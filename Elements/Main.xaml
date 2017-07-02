@@ -1,0 +1,165 @@
+﻿<Window x:Class="Elements.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Elements"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Elements Editor" Height="450" Width="630"
+        MinHeight="450" MinWidth="630"
+        ResizeMode="CanResize" WindowStartupLocation="CenterScreen"
+        Background="#FFF0F0F0">
+    
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    
+    <Grid Margin="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*" MaxWidth="200px"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="MaxHeight" Value="25" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Margin" Value="3px" />
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="MaxHeight" Value="25" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Margin" Value="3px" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="3px" />
+            </Style>
+        </Grid.Resources>
+
+        <Label Content="Element Name" Grid.Row="0" Grid.Column="0" />
+        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Source={StaticResource ElementNames}}" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedIndex="{Binding ElementIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, FallbackValue=0}" />
+        <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Symbol, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Content="Atomic Number" Grid.Row="1" Grid.Column="0" />
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False" Text="{Binding Number, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+
+        <Label Content="Mass Number" Grid.Row="2" />
+        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Mass, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Content="Group/Period" Grid.Row="3" />
+        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Text="{Binding Group, UpdateSourceTrigger=PropertyChanged}">
+            <sys:String>none</sys:String>
+            <sys:Int32>1</sys:Int32>
+            <sys:Int32>2</sys:Int32>
+            <sys:Int32>3</sys:Int32>
+            <sys:Int32>4</sys:Int32>
+            <sys:Int32>5</sys:Int32>
+            <sys:Int32>6</sys:Int32>
+            <sys:Int32>7</sys:Int32>
+            <sys:Int32>8</sys:Int32>
+            <sys:Int32>9</sys:Int32>
+            <sys:Int32>10</sys:Int32>
+            <sys:Int32>11</sys:Int32>
+            <sys:Int32>12</sys:Int32>
+            <sys:Int32>13</sys:Int32>
+            <sys:Int32>14</sys:Int32>
+            <sys:Int32>15</sys:Int32>
+            <sys:Int32>16</sys:Int32>
+            <sys:Int32>17</sys:Int32>
+            <sys:Int32>18</sys:Int32>
+        </ComboBox>
+        <ComboBox Grid.Row="3" Grid.Column="2" SelectedIndex="0" Text="{Binding Period, UpdateSourceTrigger=PropertyChanged}">
+            <sys:Int32>1</sys:Int32>
+            <sys:Int32>2</sys:Int32>
+            <sys:Int32>3</sys:Int32>
+            <sys:Int32>4</sys:Int32>
+            <sys:Int32>5</sys:Int32>
+            <sys:Int32>6</sys:Int32>
+            <sys:Int32>7</sys:Int32>
+        </ComboBox>
+
+        <Label Content="Classification" Grid.Row="4" />
+        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0" Text="{Binding Classification, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem>Non-Metal</ComboBoxItem>
+            <ComboBoxItem>Alkali Metals</ComboBoxItem>
+            <ComboBoxItem>Alkali Earths Metals</ComboBoxItem>
+            <ComboBoxItem>Noble Gas</ComboBoxItem>
+            <ComboBoxItem>Halogens</ComboBoxItem>
+            <ComboBoxItem>Metalloids</ComboBoxItem>
+            <ComboBoxItem>Transition Metals</ComboBoxItem>
+            <ComboBoxItem>Post Transition Metals</ComboBoxItem>
+            <ComboBoxItem>Lanthanides</ComboBoxItem>
+            <ComboBoxItem>Actinides</ComboBoxItem>
+            <ComboBoxItem>Other Metals</ComboBoxItem>
+        </ComboBox>
+
+        <Label Content="Location" Grid.Row="5"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0" Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem>s-block</ComboBoxItem>
+            <ComboBoxItem>p-block</ComboBoxItem>
+            <ComboBoxItem>d-block</ComboBoxItem>
+            <ComboBoxItem>f-block</ComboBoxItem>
+            <ComboBoxItem>g-block</ComboBoxItem>
+        </ComboBox>
+
+        <Label Content="Electron Shell Config" Grid.Row="6" />
+        <Label Content="Electron SubShell Config" Grid.Row="7"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ShellConfig}" />
+        <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding SubshellConfig, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Content="Ionisation" Grid.Row="8" />
+        <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Ionisation, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Content="State at Room Temperature" Grid.Row="9" />
+        <ComboBox Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0" Text="{Binding State, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem>Gas</ComboBoxItem>
+            <ComboBoxItem>Solid</ComboBoxItem>
+            <ComboBoxItem>Liquid</ComboBoxItem>
+            <ComboBoxItem>Unknown</ComboBoxItem>
+        </ComboBox>
+
+        <TextBox Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Boiling, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Melting, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="Boiling Point" Grid.Row="10" />
+        <Label Content="Melting Point" Grid.Row="11" />
+
+        <Label Content="Discovery" Grid.Row="12" />
+        <TextBox Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Discovery, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Content="Isotopes" Grid.Row="13" />
+        <TextBox Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Isotopes, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Content="Element Description" Grid.Row="0" Grid.Column="3" Padding="0" Grid.ColumnSpan="2" />
+        <TextBox SpellCheck.IsEnabled="True" TextWrapping="Wrap" Grid.Row="1" Grid.Column="3" Grid.RowSpan="6" Grid.ColumnSpan="2" MaxHeight="Infinity" VerticalContentAlignment="Top" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBox TextWrapping="Wrap" Grid.Row="7" Grid.RowSpan="5" Grid.Column="3" IsEnabled="False" Grid.ColumnSpan="2" MaxHeight="Infinity" VerticalContentAlignment="Top" Text="{Binding Output, Mode=OneWay}" />
+
+        <Button Content="Load and Resave All" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2" Command="{Binding ResaveCommand}" />
+        <Button Content="Save" Grid.Row="13" Grid.Column="4" Command="{Binding SaveCommand}" />
+        <Button Content="Load" Grid.Row="13" Grid.Column="3" Command="{Binding LoadCommand}" />
+    </Grid>
+</Window>

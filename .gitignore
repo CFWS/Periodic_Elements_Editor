@@ -1,0 +1,18 @@
+# User Files
+*.suo
+*.user
+
+# VS
+.vs/
+
+# Build Files
+[Dd]bug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+
+# Clickonce
+publish/
+
+# Nuget
+packages/

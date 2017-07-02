@@ -1,0 +1,16 @@
+*         text=auto
+
+*.cs				eol=crlf  diff=csharp
+*.xaml			eol=crlf
+*.xaml.cs		eol=crlf
+*.xml				eol=crlf
+
+*.csproj		eol=crlf  merge=binary
+*.sln				eol=crlf  merge=binary
+*.config		eol=crlf
+
+*.bat				eol=crlf
+*.md				eol=lf
+
+.gitignore      eol=lf
+.gitattributes  eol=lf
