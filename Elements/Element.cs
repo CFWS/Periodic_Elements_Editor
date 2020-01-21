@@ -73,7 +73,7 @@ namespace Elements
         // Generate JSON for Saving
         public string GenerateSaveJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented).Replace("\r", "");
+            return JsonConvert.SerializeObject(this, Formatting.Indented).Replace("\r", "", System.StringComparison.InvariantCulture);
         }
 
         // Return Save FileName

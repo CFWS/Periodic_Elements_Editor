@@ -1,2 +1,2 @@
-nuget restore
-msbuild Elements.sln /m /validate /t:Clean;Build /p:Configuration=Release
+dotnet publish  /p:PublishProfile=FolderProfile --configuration Release
+pause

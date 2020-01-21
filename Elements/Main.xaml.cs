@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 
@@ -55,7 +56,7 @@ namespace Elements
         // Returns the path of the current element (assuming that it is in the current directory)
         private string GetDefaultPathOfElement()
         {
-            return System.AppDomain.CurrentDomain.BaseDirectory + Element.ReturnPartialFileName();
+            return Directory.GetCurrentDirectory() + "\\" + Element.ReturnPartialFileName();
         }
 
         // Indicates whether a file is being loaded
@@ -110,7 +111,7 @@ namespace Elements
         public void Save()
         {
             // Ensure that an element is being saved
-            if (Name == "")
+            if (string.IsNullOrEmpty(Name))
             {
                 MessageBox.Show("Please select an element", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
@@ -152,17 +153,14 @@ namespace Elements
             }
 
             // Save serialized object
-            using (StreamWriter sw = new StreamWriter(new FileStream(fileName, FileMode.OpenOrCreate), System.Text.Encoding.UTF8))
-            {
-                sw.Write(Element.GenerateSaveJson());
-            }
+            using StreamWriter sw = new StreamWriter(new FileStream(fileName, FileMode.OpenOrCreate), new UTF8Encoding(false));
+            sw.Write(Element.GenerateSaveJson());
         }
 
         // Load and Resave all Element Files
         public void Resave()
         {
-            int i = 0;
-            for (i = 0; i < NUM_ELEMENTS; i++)
+            for (int i = 0; i < NUM_ELEMENTS; i++)
             {
                 // Get current element
                 ElementIndex = i;
@@ -190,7 +188,7 @@ namespace Elements
             get
             {
                 // Return Initial Message on Load
-                if (Name == "")
+                if (string.IsNullOrEmpty(Name))
                 {
                     return "Output";
                 }
@@ -233,7 +231,9 @@ namespace Elements
                 // Atomic Number is SelectedIndex of ComboBox + 1
                 if (value == int.MaxValue)
                 {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                     throw new ArgumentOutOfRangeException("value", "Element number is too large.");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
                 }
                 Element.Number = value + 1;
 
