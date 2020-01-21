@@ -1,10 +1,10 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Elements
 {
@@ -41,22 +41,16 @@ namespace Elements
             Element = new Element();
 
             // Button Clicks
-            LoadCommand = new DelegateCommand(Load, CanExecute);
-            SaveCommand = new DelegateCommand(Save, CanExecute);
-            ResaveCommand = new DelegateCommand(Resave, CanExecute);
+            LoadCommand = new RelayCommand(param => Load(), param => true);
+            SaveCommand = new RelayCommand(param => Save(), param => true);
+            ResaveCommand = new RelayCommand(param => Resave(), param => true);
         }
 
         #region Commands
         // Load/Save/Resave
-        public DelegateCommand LoadCommand { get; private set; }
-        public DelegateCommand SaveCommand { get; private set; }
-        public DelegateCommand ResaveCommand { get; private set; }
-
-        // Can Execute for RelayCommand
-        bool CanExecute()
-        {
-            return true;
-        }
+        public ICommand LoadCommand { get; private set; }
+        public ICommand SaveCommand { get; private set; }
+        public ICommand ResaveCommand { get; private set; }
 
         // Returns the path of the current element (assuming that it is in the current directory)
         private string GetDefaultPathOfElement()
