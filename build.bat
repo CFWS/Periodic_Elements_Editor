@@ -1,2 +1,2 @@
-dotnet publish  /p:PublishProfile=FolderProfile --configuration Release
+dotnet publish /p:PublishProfile=FolderProfile --configuration Release
 pause

@@ -11,7 +11,7 @@
         <ResourceDictionary>
             <!--List of Elements-->
             <x:Array x:Key="ElementNames" Type="sys:String">
-                <sys:String>﻿Hydrogen</sys:String>
+                <sys:String>Hydrogen</sys:String>
                 <sys:String>Helium</sys:String>
                 <sys:String>Lithium</sys:String>
                 <sys:String>Beryllium</sys:String>

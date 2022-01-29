@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Elements
 {
@@ -14,7 +15,7 @@ namespace Elements
         public string Symbol { get; set; } = "";
 
         // Number
-        [JsonProperty(PropertyName = "Atomic Number")]
+        [JsonPropertyName("Atomic Number")]
         public int Number { get; set; } = 1;
 
         // Name
@@ -36,44 +37,49 @@ namespace Elements
         public string Location { get; set; } = DEFAULT_LOCATION;
 
         // Electron Shell Configuration
-        [JsonProperty(PropertyName = "Electron shell configuration")]
+        [JsonPropertyName("Electron shell configuration")]
         public string ShellConfig { get; set; } = "";
 
         // Electron Subshell Configuration
-        [JsonProperty(PropertyName = "Electron subshell configuration")]
+        [JsonPropertyName("Electron subshell configuration")]
         public string SubshellConfig { get; set; } = "";
 
         // Ionisation Energy
-        [JsonProperty(PropertyName = "Ionisation energy")]
+        [JsonPropertyName("Ionisation energy")]
         public string Ionisation { get; set; } = "";
 
         // State at Room Temperature
-        [JsonProperty(PropertyName = "State at Room Temperature")]
+        [JsonPropertyName("State at Room Temperature")]
         public string State { get; set; } = DEFAULT_STATE;
 
         // Boiling Point
-        [JsonProperty(PropertyName = "Boiling Point")]
+        [JsonPropertyName("Boiling Point")]
         public string BoilingPoint { get; set; } = "";
 
         // Melting Point
-        [JsonProperty(PropertyName = "Melting Point")]
+        [JsonPropertyName("Melting Point")]
         public string MeltingPoint { get; set; } = "";
 
         // Isotopes
         public string Isotopes { get; set; } = "";
 
         // Discovery
-        [JsonProperty(PropertyName = "Discovered")]
+        [JsonPropertyName("Discovered")]
         public string Discovery { get; set; } = "";
 
         // Element Description
-        [JsonProperty(PropertyName = "Element Description")]
+        [JsonPropertyName("Element Description")]
         public string Description { get; set; } = "";
 
         // Generate JSON for Saving
         public string GenerateSaveJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented).Replace("\r", "", System.StringComparison.InvariantCulture);
+            return JsonSerializer.Serialize(this, options: new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+
+            }).Replace("\r\n", "\n") + "\n";
         }
 
         // Return Save FileName

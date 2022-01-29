@@ -1,9 +1,9 @@
 ﻿using Microsoft.Win32;
-using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 
@@ -104,7 +104,7 @@ namespace Elements
             }
 
             // Populate Element object
-            JsonConvert.PopulateObject(file, Element);
+            Element = JsonSerializer.Deserialize<Element>(file);
         }
 
         // Save
@@ -153,7 +153,7 @@ namespace Elements
             }
 
             // Save serialized object
-            using StreamWriter sw = new StreamWriter(new FileStream(fileName, FileMode.OpenOrCreate), new UTF8Encoding(false));
+            using StreamWriter sw = new StreamWriter(new FileStream(fileName, FileMode.Create), new UTF8Encoding(false));
             sw.Write(Element.GenerateSaveJson());
         }
 
@@ -231,9 +231,7 @@ namespace Elements
                 // Atomic Number is SelectedIndex of ComboBox + 1
                 if (value == int.MaxValue)
                 {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                     throw new ArgumentOutOfRangeException("value", "Element number is too large.");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
                 }
                 Element.Number = value + 1;
 

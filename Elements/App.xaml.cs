@@ -20,10 +20,11 @@ namespace Elements
         // Startup
         private void AppStartup(object sender, StartupEventArgs e)
         {
+#if DEBUG == false
             // Add Exception Handler
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+#endif
 
-            // Launch Main
             Main main = new Elements.Main();
             main.Show();
         }
