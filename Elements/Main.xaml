@@ -10,11 +10,11 @@
         MinHeight="450" MinWidth="630"
         ResizeMode="CanResize" WindowStartupLocation="CenterScreen"
         Background="#FFF0F0F0">
-    
+
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
-    
+
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*" MaxWidth="200px"></ColumnDefinition>
